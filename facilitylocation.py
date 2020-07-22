@@ -204,8 +204,41 @@ class FacilityLocationModel:
 
 
 	def setParamters(self):
-		pass
+		"""
+		Method to set parameters - 
+			MIP Gap 1%
+			Logfile name gurobilog.txt
+		"""
+		self.model.setParam(GRB.Param.MIPGap, 0.01)
+		self.model.setParam(GRB.Param.LogFile, "gurobilog.txt")
 
 
 	def solveModel(self):
-		pass
+		"""
+		Method to call to solve
+		"""
+		self.model.optimize()
+
+
+	def extractSolution(self):
+		"""
+		Method to extract primary decision that are
+		flows from a solved model.
+		"""
+
+		if self.model.status == GRB.Status.SUBOPTIMAL or \
+		self.model.status == GRB.Status.OPTIMAL:
+
+			flow = {}
+
+			for pid in self.periodid:
+				for sid in self.siteid:
+					for cid in self.customerid:
+
+						flow[(pid, sid, cid)] = self.model.getVarByName(
+							f"x[{pid}, {sid}, {cid}]"
+						).X
+			return flow
+		else:
+			print("Model might not have solution available")
+			return {}
