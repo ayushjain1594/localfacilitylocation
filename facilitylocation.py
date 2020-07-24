@@ -237,7 +237,7 @@ class FacilityLocationModel:
 					for cid in self.customerid:
 
 						flow = self.model.getVarByName(
-							f"x[{pid}, {sid}, {cid}]"
+							f"flow[{pid},{sid},{cid}]"
 						).X
 						flows[(pid, sid, cid)] = flow
 						objectivecontri[(pid, sid, cid)] = \
