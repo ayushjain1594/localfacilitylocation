@@ -203,7 +203,7 @@ class FacilityLocationModel:
 			self.model.write('model.mps')
 
 
-	def setParamters(self):
+	def setParameters(self):
 		"""
 		Method to set parameters - 
 			MIP Gap 1%
@@ -229,16 +229,21 @@ class FacilityLocationModel:
 		if self.model.status == GRB.Status.SUBOPTIMAL or \
 		self.model.status == GRB.Status.OPTIMAL:
 
-			flow = {}
+			flows = {}
+			objectivecontri = {}
 
 			for pid in self.periodid:
 				for sid in self.siteid:
 					for cid in self.customerid:
 
-						flow[(pid, sid, cid)] = self.model.getVarByName(
+						flow = self.model.getVarByName(
 							f"x[{pid}, {sid}, {cid}]"
 						).X
-			return flow
+						flows[(pid, sid, cid)] = flow
+						objectivecontri[(pid, sid, cid)] = \
+							0.1 * self.servicedist[sid, cid] * flow \
+							+ (self.servicedist[sid, cid] if flow > 0 else 0)
+			return flows, objectivecontri
 		else:
 			print("Model might not have solution available")
-			return {}
+			return {}, {}
