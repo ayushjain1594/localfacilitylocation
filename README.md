@@ -49,6 +49,7 @@ Due to computational complexity, the entire problem is solved in parts.
 It is claimed that reducing service distance under network optimization should indirectly reduce routing distance. The study seeks to support this claim from results.
 
 **Process**
+
 Flow Optimization:
 
  * Obtain avg per day network flows by year from FCs to Customers. 
@@ -66,6 +67,7 @@ Routing:
 * For each sub-cluster routes are created using 3OPT heuristic with additional node for FC where each tour begins and ends.
 
 **Scenarios**
+
 Scenarios are named based on elements that are added on top of baseline. Their timeline is shown below.
 
 |2020|2021|2022|2023|2024|2025|
@@ -101,3 +103,12 @@ S4 : Baseline + NewSites + FutureYears
 |Per day routing miles|% Customers serviced by FC within 5 Miles|
 |% Routes over 12 Miles| |
 
+## Scenario Comparison
+
+**Baseline vs S3 (2020)**
+
+![Baseline vs S3](/images/S1-S3.png)
+
+**S3 vs S4**
+
+![S3 vs S4](/images/S3-S4.png)
