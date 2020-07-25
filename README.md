@@ -107,8 +107,32 @@ S4 : Baseline + NewSites + FutureYears
 
 **Baseline vs S3 (2020)**
 
-![Baseline vs S3](/images/S1-S3.png)
+![Baseline vs S3](/images/S1_S3.png)
 
 **S3 vs S4**
 
-![S3 vs S4](/images/S3-S4.png)
+![S3 vs S4](/images/S3_S4.png)
+
+## Takeaways and Ideas
+
+Comparing Baseline to S3 for year 2020, additional 3630 orders per day capacity has following immediate benefits:
+
+ * 4.53% reduction in network flow cost.
+ * 4.74% reduction in delivery miles.
+ * 4% additional customers serviced by FC within 4 miles.
+ * 6% additional customers serviced by FC within 5 miles.
+ * 5% lesser routes over 12 miles.
+ * No routes over 16 miles.
+
+
+Comparing Scenario 3 (Baseline + SlackCap + FutureYears) to Scenario 4 (Baseline + NewSites + FutureYears), opening a new site over expanding capacity has following benefits:
+
+ * 16.73% reduction in network flow cost.
+ * 8.23% reduction in delivery miles.
+ * 10% additional customers serviced by FC within 4 miles.
+ * 4% lesser routes over 12 miles.
+ * More balanced shipment volumes among FCs. 
+
+As was claimed, the results show that reducing service distance indeed reduces routing miles, coming primarily from reduction in miles driven on first and final leg of routes.
+
+Results support the approach and should be further explored in order to make well informed decision.
