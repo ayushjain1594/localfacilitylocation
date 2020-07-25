@@ -58,13 +58,13 @@ Flow Optimization:
  * This forms clusters of customers, each belonging to a fulfillment center.
  * This problem is solved as Mixed Integer Programming problem using Gurobi.
 
-Clusterization:
+[Clusterization](https://github.com/ayushjain1594/quicluster):
 
  * Flows obtained show clusters of customers each FC serves in a year.
  * For each FC and its cluster, further sub-clusters are created using a modified Kruskal’s algorithm to create a forest of minimum spanning trees where each tree represents a sub-cluster.
  * Customers in a sub-cluster are to be delivered on the same truck.
 
-Routing:
+[Routing](https://github.com/ayushjain1594/localsearchtsp):
 
 * For each sub-cluster routes are created using 3OPT heuristic with additional node for FC where each tour begins and ends.
 
