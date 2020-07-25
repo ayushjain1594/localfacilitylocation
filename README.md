@@ -107,6 +107,8 @@ S4 : Baseline + NewSites + FutureYears
 
 ## Scenario Comparison
 
+*Due to identical days within a year, numbers shown for a year are numbers on any day in that year.*
+
 **Baseline vs S3 (2020)**
 
 ![Baseline vs S3](/images/S1_S3.png)
