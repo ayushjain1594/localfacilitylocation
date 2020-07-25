@@ -7,14 +7,14 @@ This case study explores different options for expanding capacity to fulfill inc
 
 **Information at hand:**
 1. Customers:
-	* 7000 customers
+	* 7,000 customers
 	* Geolocation for each
 	* Average number of shipments per day by year for next five years
 
 2. Sites:
 	* 3 fulfillment centers
 	* Geolocation for each
-	* 20000 shipments per day capacity of each
+	* 20,000 shipments per day capacity of each
 
 
 **Potential Solutions:**
@@ -37,12 +37,52 @@ Variable Cost = 0.1 x Distance x Shipments
 This can be interpreted as a delivery service charging a fixed cost based on distance and variable cost based on distance and shipment size.
 
 **Consideration of routing:**
-Due to the limited geographic scope of our network, we assume -
-We are tackling the last mile of the supply chain.
-Shipments are small items allowing several deliveries in one trip.
-700 shipments capacity of truck.
-Max route length equivalent to a ‘minimum spanning tree’ of 7 miles.
+Due to the limited geographic scope of network, the study assumes -
+* This is the last mile of the supply chain.
+* Shipments are small items allowing several deliveries in one trip.
+* 700 shipments capacity of truck.
+* Max route length equivalent to a ‘minimum spanning tree’ of 7 miles.
 
-Due to computational complexity, we solve the entire problem in parts. 
+Due to computational complexity, the entire problem is solved in parts. 
 
-We claim that reducing service distance under network optimization should indirectly reduce routing distance. We seek to support this claim from results.
+It is claimed that reducing service distance under network optimization should indirectly reduce routing distance. The study seeks to support this claim from results.
+
+**Process**
+Flow Optimization:
+	* Obtain avg per day network flows by year from FCs to Customers. 
+	* This forms clusters of customers, each belonging to a fulfillment center.
+	* This problem is solved as Mixed Integer Programming problem using Gurobi.
+
+Clusterization:
+	* Flows obtained show clusters of customers each FC serves in a year.
+	* For each FC and its cluster, further sub-clusters are created using a modified Kruskal’s algorithm to create a forest of minimum spanning trees where each tree represents a sub-cluster.
+	* Customers in a sub-cluster are to be delivered on the same truck.
+
+Routing:
+	* For each sub-cluster routes are created using 3OPT heuristic with additional node for FC where each tour begins and ends.
+
+**Scenarios**
+Scenarios are named based on elements that are added on top of baseline. Their timeline is shown below.
+
+|2020|2021|2022|2023|2024|2025|
+|----|----|----|----|----|----|
+|S1  |	  |    |    |    |    |
+|S3  |S3  |S3  |S3  |S3  |S3  |
+|S4  |S4  |S4  |S4  |S4  |S4  |
+
+S1 : Baseline
+	* Only created for the period of 2020, infeasible in future years.
+	* Model current network design, estimate current costs and service levels. 
+	* Assumes that current design is optimal under the current cost structure.
+
+S3 : Baseline + SlackCap + FutureYears
+	* Extend baseline to include future years.
+	* Allow additional 20,000 orders per day capacity (slack) for each site.
+	* Note that the slack capacity is added beginning 2020 for two reason – comparison with baseline and peek at the ‘perfect world’ scenario by being able to compare with Baseline which exists only for 2020. 
+	* Slack capacity is available at a small penalty in model however it is not accounted under ‘cost’ in results.
+
+S4 : Baseline + NewSites + FutureYears
+	* Extend baseline NO to include future years 
+	* 10 candidates within Seattle for potentially max 1 new site starting 2021.
+	* New Site to have 20,000 orders per day capacity, same as others.
+	* No slack capacity for any site.
