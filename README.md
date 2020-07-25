@@ -16,7 +16,7 @@ This case study explores different options for expanding capacity to fulfill inc
 	* Geolocation for each
 	* 20,000 shipments per day capacity of each
 
-![Demand vs Capacity](/images/demand_vs_capacity.png)
+![Demand vs Capacity](/images/demand_vs_capacity.PNG)
 
 
 **Potential Solutions:**
