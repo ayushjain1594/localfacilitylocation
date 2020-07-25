@@ -117,7 +117,7 @@ S4 : Baseline + NewSites + FutureYears
 
 ![S3 vs S4](/images/S3_S4.png)
 
-## Takeaways and Ideas
+## Takeaways
 
 Comparing Baseline to S3 for year 2020, additional 3630 orders per day capacity has following immediate benefits:
 
