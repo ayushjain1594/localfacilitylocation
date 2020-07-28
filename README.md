@@ -1,4 +1,4 @@
-# Local Facility Location
+﻿# Local Facility Location
 A case study for exploring capacity expansion options for a fulfillment style distribution system with limited geographic scope.
 
 
@@ -34,6 +34,7 @@ The primary decision involve identifying average per day ‘flows’ of shipment
 Model optimizes flows based on following costs structure – 
 
 Fixed Cost = Distance in Miles (independent of number of shipments)
+
 Variable Cost = 0.1 x Distance x Shipments
 
 This can be interpreted as a delivery service charging a fixed cost based on distance and variable cost based on distance and shipment size.
